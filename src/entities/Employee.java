@@ -3,8 +3,8 @@ package entities;
 public class Employee {
 	
 	private String name;
-	private Integer hours;
-	private Double valuePerHour;
+	protected Integer hours;
+	protected Double valuePerHour;
 	
 	public Employee() {		
 	}
@@ -46,14 +46,10 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee "
-				+ "[name=" + name 
-				+ ", hours=" + hours 
-				+ ", valuePerHour=" 
-				+ valuePerHour + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(name + " - $ " + payment() + "\n");
+		//sb.append(" - $ ");
+		//sb.append(payment());
+		return sb.toString();
 	}
-	
-	
-	
-
 }
