@@ -16,51 +16,35 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		List<Employee> listEmployees = new ArrayList<>();
 		
-		System.out.print("Enter the number of employees:");
+		System.out.print("Enter the number of employees: ");
 		int n = sc.nextInt();
 		
 		for (int i = 1; i <= n; i ++) {
 			
-			System.out.println("Employee #" + i);
-			System.out.print("Outsourced (y/n)? ");
+			System.out.println("Employee #" + i + " data:");
+			System.out.print("Outsourced (y/n)? ");			
+			char r = sc.next().charAt(0);			
+			System.out.print("Name: ");
+			String name = sc.next();
+			System.out.print("Hours: ");
+			int hours = sc.nextInt();
+			System.out.print("Value per hour: ");
+			double valuePerHour = sc.nextDouble();
 			
-			String r = sc.next();			
-			
-			if (r.contains("n")) {				
-				System.out.print("Name: ");
-				String name = sc.next();
-				System.out.print("Hours: ");
-				int hours = sc.nextInt();
-				System.out.print("Value per hour: ");
-				double valuePerHour = sc.nextDouble();
-				
-				Employee employee = new Employee(name, hours, valuePerHour);
-				listEmployees.add(employee);
+			if (r == 'y') {
+				System.out.print("Addtional charge: ");
+				double addtionalCharge = sc.nextDouble();				
+				listEmployees.add( new OutsourceEmployee(name, hours, valuePerHour, addtionalCharge));
 			}
-			
-			if (r.contains("y")) {
-				
-				System.out.print("Name: ");
-				String name = sc.next();
-				System.out.print("Hours: ");
-				int hours = sc.nextInt();
-				System.out.print("Value per hour: ");
-				double valuePerHour = sc.nextDouble();
-				System.out.print("Additional charge: ");
-				double additionalCharge = sc.nextDouble();
-				
-				Employee outsourceEmployee = new OutsourceEmployee(name, hours, valuePerHour, additionalCharge);
-				outsourceEmployee.payment();
-				
-				
-				listEmployees.add(outsourceEmployee);
+			else {				
+				listEmployees.add( new Employee(name, hours, valuePerHour));
 			}
 		}
 		
-		System.out.println("PAYMENTS: ");
+		System.out.println("\nPAYMENTS: ");
 		
-		for(Employee list : listEmployees) {			
-			System.out.print(list.toString());
+		for(Employee emp : listEmployees) {			
+			System.out.print(emp.toString());
 		}
 		sc.close();
 	}
